@@ -17,9 +17,10 @@ func _process(delta):
 			$Timer.start()
 		hasLaunched = true
 	if Input.is_action_just_pressed("ui_left"):
-		if !hasLaunched : rotate(.25)
+		rotate(.25)
 	if Input.is_action_just_pressed("ui_right"):
-		if !hasLaunched : rotate(-.25)
+		rotate(-.25)
+	rotation_degrees = clamp(rotation_degrees,-90,0)
 
 
 # Called when the node enters the scene tree for the first time.
