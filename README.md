@@ -16,12 +16,12 @@ Artwork was drawn by me using gimp. With the exception of the Marlboro font, by 
 - [x] C-6: The player can fire the projectile.
 - [x] C-7: The projectile's flight is affected by gravity using Godot Engine's physics system.
 - [x] C-8: There is a &ldquo;ground&rdquo; that stops the projectile.
-- [ ] C-9: There is a non-ground target that the projectile can hit.
+- [x] C-9: There is a non-ground target that the projectile can hit.
 - [ ] B-1: The <code>README.md</code> file contains a personal reflection on the iteration as well as the reflections from previous iterations, if any.
 - [ ] B-2: The <code>README.md</code> file contains a self-assessment.
 - [ ] B-3: The release is published to GitHub Pages with a link provided in the <code>README.md</code> file.
-- [ ] B-4: The projectile's firing angle is clamped between 0&deg; (straight forward) and 90&deg; (straight up).
+- [x] B-4: The projectile's firing angle is clamped between 0&deg; (straight forward) and 90&deg; (straight up).
 - [x] B-5: Once fired, the projectile is non-interactive.
-- [ ] A-1: The player can modify the strength of the projectile's firing.
-- [ ] A-2: There is a visual indicator showing the angle at which the projectile will fire.
-- [ ] A-3: The projectile's hitting the target is recognized and logged to the console or otherwise indicated.
+- [x] A-1: The player can modify the strength of the projectile's firing.
+- [x] A-2: There is a visual indicator showing the angle at which the projectile will fire.
+- [x] A-3: The projectile's hitting the target is recognized and logged to the console or otherwise indicated.
