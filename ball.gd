@@ -34,15 +34,16 @@ func _integrate_forces(state):
 		resetState = false
 		
 func start(pos):
-	resetState = true
+	mode = MODE_KINEMATIC
 	strength = 500
 	position = pos
 	oPosX = position.x
 	oPosY = position.y
-	mode = MODE_KINEMATIC
 	vectX = 1
 	vectY = 0
 	hasLaunched = false
+	resetState = true
+	
 	
 	
 func preLaunchLeft():

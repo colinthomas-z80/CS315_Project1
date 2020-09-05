@@ -10,8 +10,9 @@ func start(pos):
 	startPosition = pos
 	rotation_degrees = 0
 	mode = MODE_KINEMATIC
-	resetPos = true
 	mode = MODE_RIGID
+	resetPos = true
+	
 	
 
 func _integrate_forces(state):
