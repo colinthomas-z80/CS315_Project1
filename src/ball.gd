@@ -33,6 +33,8 @@ func _integrate_forces(state):
 		state.transform = Transform2D(0.0,position)
 		resetState = false
 		
+	
+		
 func start(pos):
 	mode = MODE_KINEMATIC
 	strength = 500
