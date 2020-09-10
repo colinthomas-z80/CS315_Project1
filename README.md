@@ -28,4 +28,6 @@ This first iteration I ran in to a lot of problems, as expected in learning a ne
 - [x] A-3: The projectile's hitting the target is recognized and logged to the console or otherwise indicated.
 
 ## 3rd Party Assets
-Artwork was drawn by me using gimp. With the exception of the Marlboro font, by Dieter Steffmann. Obtained from 1001freefonts.com
+All artwork and music was made by me unless noted below
+
+Marlboro font from https://www.1001freefonts.com/marlboro.font
