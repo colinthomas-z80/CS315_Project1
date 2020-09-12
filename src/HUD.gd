@@ -8,8 +8,10 @@ func show_message(text):
 	$Message.show()
 	
 func strengthSetText(text):
-	$StrengthMeter.text = str("Power: " + str(text))
+	if text != null: $StrengthMeter.text = str("Power: " + str(text))
 	
+func ballCountSetText(text):
+	if text != null: $BallCount.text = str("Ball Count: " + str(text))
 func show_game_over():
 	show_message("Pins of Fury")
 	update_score(0)

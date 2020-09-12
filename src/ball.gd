@@ -1,6 +1,10 @@
 extends RigidBody2D
 
-export var strength = 500
+var HIGH = 1100
+var MEDIUM = 800
+var LOW = 500
+
+export var strength = 800
 var vectX : float = 1
 var vectY : float = 0
 var oPosX : float = position.x
@@ -11,6 +15,7 @@ var resetState = false
 func _process(delta):
 	if Input.is_action_just_pressed("launch"):
 		mode = MODE_RIGID
+		$AudioStreamPlayer.play()
 		hasLaunched = true
 		if !resetState : $MessageTimer.start(4)
 		var direction = Vector2(vectX,vectY).normalized()
@@ -27,11 +32,29 @@ func _process(delta):
 	if !hasLaunched:
 		position.x = clamp(position.x,oPosX,oPosX+42)
 		position.y = clamp(position.y,oPosY-14,oPosY)
-		
+	clamp(strength,500,1100)
 func _integrate_forces(state):
 	if resetState:
 		state.transform = Transform2D(0.0,position)
 		resetState = false
+		
+func strength(dir):
+	if dir == "up":
+		if strength == MEDIUM: 
+			strength = HIGH
+			return "HIGH"
+		if strength == LOW: 
+			strength = MEDIUM
+			return "MEDIUM"
+		print("strength up")
+	if dir == "down":
+		if strength == HIGH: 
+			strength = MEDIUM
+			return "MEDIUM"
+		if strength == MEDIUM: 
+			strength = LOW
+			return "LOW"
+		print("strength down")
 		
 	
 		

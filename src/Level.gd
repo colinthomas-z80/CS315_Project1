@@ -3,39 +3,33 @@ extends Node2D
 var inGame = false
 var pinHit = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var ballCount 
 
 func _process(delta):
+	$HUD.ballCountSetText(ballCount)
 	if Input.is_action_just_pressed("r"):
 		inGame = false
-		$BallRestartMessage.hide()
-		gameOver()
-		$HUD.strengthSetText($Ball.strength)
+		if ballCount == 1: $HUD.newGame()
+		ballCount -= 1
+		newBall()
 	if Input.is_action_just_pressed("ui_up"):
-		$Ball.strength += 100
-		print($Ball.strength)
-		$HUD.strengthSetText($Ball.strength)
+		$HUD.strengthSetText($Ball.strength("up"))
 	if Input.is_action_just_pressed("ui_down"):
-		$Ball.strength -= 100
-		print($Ball.strength)
-		$HUD.strengthSetText($Ball.strength)
+		$HUD.strengthSetText($Ball.strength("down"))
+		
 
-func newGame():
+func newBall():
 	$BallRestartMessage.hide()
 	$Ball.stopTimer()
 	$Arm.start() 
 	$Ball.start($BallStartPos.position)
 	$Pin.start($PinStartPos.position)
+	$HUD.strengthSetText("MEDIUM")
 	inGame = true
 	
-func gameOver():
-	$HUD.newGame()
-	
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ballCount = 5
 	$BallRestartMessage.hide()
 	pass
 
@@ -46,7 +40,8 @@ func _ready():
 
 
 func _on_HUD_start_game():
-	newGame()
+	ballCount = 5
+	newBall()
 
 
 func _on_MessageTimer_timeout():
