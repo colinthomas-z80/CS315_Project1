@@ -21,9 +21,9 @@ func _process(delta):
 			ballCount -= 1
 			newBall()
 	if Input.is_action_just_pressed("ui_up"):
-		$HUD.strengthSetText(curBall.strength("up"))
+		if inGame: $HUD.strengthSetText(curBall.strength("up"))
 	if Input.is_action_just_pressed("ui_down"):
-		$HUD.strengthSetText(curBall.strength("down"))
+		if inGame: $HUD.strengthSetText(curBall.strength("down"))
 		
 
 func newBall():

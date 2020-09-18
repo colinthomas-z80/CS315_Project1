@@ -14,27 +14,14 @@ func ballCountSetText(text):
 	if text != null: $BallCount.text = str("Ball Count: " + str(text))
 func show_game_over():
 	show_message("Pins of Fury")
-	update_score(0)
+	$ScoreLabel.text = str(0)
 	$StartButton.show()
 	
 	
 func update_score(score):
-	$ScoreLabel.text = str(score)
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	var cur = int($ScoreLabel.text)
+	$ScoreLabel.text = str(cur + score)
+	
 func newGame():
 	show_game_over()
 

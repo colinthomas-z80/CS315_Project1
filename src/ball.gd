@@ -14,7 +14,7 @@ var hasLaunched = false
 var resetState = false
 
 func _process(delta):
-	if Input.is_action_just_pressed("launch"):
+	if Input.is_action_just_pressed("launch") and !hasLaunched:
 		mode = MODE_RIGID
 		$AudioStreamPlayer.play()
 		hasLaunched = true
