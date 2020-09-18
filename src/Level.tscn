@@ -1,12 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/AlleyFloor.png" type="Texture" id=2]
 [ext_resource path="res://arm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level.gd" type="Script" id=4]
 [ext_resource path="res://assets/Marlboro.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://HUD.gd" type="Script" id=6]
-[ext_resource path="res://MessageTimer.gd" type="Script" id=7]
 [ext_resource path="res://Pin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/background.png" type="Texture" id=9]
 [ext_resource path="res://assets/GameSoundtrack.wav" type="AudioStream" id=10]
@@ -38,6 +36,11 @@ points = PoolVector2Array( 140, 140, 0, 140, 0, 0, 140, 0 )
 } ]
 0/z_index = 0
 
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 845.01, 146.745, 0, 0, 0, 0, 945.397, 311.559, 0, 0, 0, 0, 838.99, 146.882, 0, 0, 0, 0, 744.602, 38.3368, 0, 0, 0, 0, 943.76, 35.5051, 0, 0, 0, 0, 844.653, 145.938, 0, 0, 0, 0, 845.01, 146.745, 0, 0, 0, 0, 703.226, 240.934, 0, 0, 0, 0, 564.437, 139.225, 0, 0, 0, 0, 672.502, 102.144, 0, 0, 0, 0, 735.01, 320.394, 0, 0, 0, 0, 826.124, 225.042, 0, 0, 0, 0, 945.843, 308.739, 0, 0, 0, 0, 845.01, 146.745 )
+}
+
 [sub_resource type="DynamicFont" id=3]
 size = 100
 font_data = ExtResource( 5 )
@@ -58,26 +61,12 @@ font_data = ExtResource( 5 )
 size = 25
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 30
-font_data = ExtResource( 5 )
-
 [sub_resource type="DynamicFont" id=8]
-size = 50
+size = 30
 font_data = ExtResource( 5 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
-
-[node name="Ball" parent="." instance=ExtResource( 1 )]
-position = Vector2( 168.682, 411.287 )
-collision_layer = 31
-collision_mask = 31
-gravity_scale = 4.0
-
-[node name="MessageTimer" type="Timer" parent="Ball"]
-one_shot = true
-script = ExtResource( 7 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -87,20 +76,28 @@ tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0
 
 [node name="Arm" parent="." instance=ExtResource( 3 )]
 position = Vector2( 88.0849, 412.777 )
+z_index = 2
 
 [node name="BallStartPos" type="Position2D" parent="."]
 position = Vector2( 71.3524, 448.331 )
 
-[node name="PinStartPos" type="Position2D" parent="."]
-position = Vector2( 789.971, 503.969 )
+[node name="PinPath" type="Path2D" parent="."]
+curve = SubResource( 9 )
 
-[node name="Label" type="Label" parent="PinStartPos"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "here!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PathFollow2D" type="PathFollow2D" parent="PinPath"]
+position = Vector2( 801.332, 175.761 )
+rotation = 2.20019
+offset = 919.56
+rotate = false
+
+[node name="Pin" parent="PinPath/PathFollow2D" instance=ExtResource( 8 )]
+position = Vector2( 3.35516, -20.4953 )
+rotation = 4.06313
+collision_layer = 2147483655
+collision_mask = 8
+mass = 2.55102
+gravity_scale = 15.0
+contacts_reported = 5
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 6 )
@@ -181,33 +178,11 @@ margin_left = 40.0
 margin_top = 240.0
 margin_right = 169.0
 margin_bottom = 267.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Ball Count: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BallRestartMessage" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 283.5
-margin_top = 277.5
-margin_right = 740.5
-margin_bottom = 322.5
-custom_fonts/font = SubResource( 8 )
-text = "Press \"R\" to throw again!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pin" parent="." instance=ExtResource( 8 )]
-position = Vector2( 789.971, 503.969 )
-collision_layer = 2147483655
-collision_mask = 8
-gravity_scale = 4.0
-contacts_reported = 5
 
 [node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -225,8 +200,7 @@ stream = ExtResource( 10 )
 volume_db = -16.155
 autoplay = true
 script = ExtResource( 11 )
-[connection signal="timeout" from="Ball/MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="body_entered" from="PinPath/PathFollow2D/Pin" to="." method="_on_Pin_body_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_StartButton_pressed"]
-[connection signal="body_entered" from="Pin" to="." method="_on_Pin_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]

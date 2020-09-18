@@ -1,8 +1,9 @@
 extends RigidBody2D
+class_name Ball
 
-var HIGH = 1100
-var MEDIUM = 800
-var LOW = 500
+const HIGH = 1100
+const MEDIUM = 800
+const LOW = 500
 
 export var strength = 800
 var vectX : float = 1
@@ -17,7 +18,6 @@ func _process(delta):
 		mode = MODE_RIGID
 		$AudioStreamPlayer.play()
 		hasLaunched = true
-		if !resetState : $MessageTimer.start(4)
 		var direction = Vector2(vectX,vectY).normalized()
 		var velocity = direction * strength
 		apply_impulse(Vector2.ZERO,velocity)
@@ -33,6 +33,7 @@ func _process(delta):
 		position.x = clamp(position.x,oPosX,oPosX+42)
 		position.y = clamp(position.y,oPosY-14,oPosY)
 	clamp(strength,500,1100)
+
 func _integrate_forces(state):
 	if resetState:
 		state.transform = Transform2D(0.0,position)
@@ -55,9 +56,7 @@ func strength(dir):
 			strength = LOW
 			return "LOW"
 		print("strength down")
-		
-	
-		
+			
 func start(pos):
 	mode = MODE_KINEMATIC
 	strength = 500
@@ -69,8 +68,6 @@ func start(pos):
 	hasLaunched = false
 	resetState = true
 	
-	
-	
 func preLaunchLeft():
 	position.x -= 6
 	position.y += 2
@@ -79,8 +76,6 @@ func preLaunchRight():
 	position.x += 6
 	position.y -= 2
 
-func stopTimer():
-	$MessageTimer.stop()
 
 
 
