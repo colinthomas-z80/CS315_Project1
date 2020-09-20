@@ -4,7 +4,7 @@ https://bsu-cs315.github.io/P1_pins_of_fury/
 
 
 ## Project Report
-This iteration I was able to spend some time refining some of the game's functionality. Not to say the game is close to being done, because it still lacks a clear objective/challenge, but I thought about the core elements of the game. Instead of having strength represented by a numerical value, I thought it would be more clear just having low, medium, and high strength settings. When I was starting to think of a sound effect to attach to the ball, I ended up playing with Garage Band on my phone for quite awhile making a simple song for the game. I think the music alone makes it a lot more interesting. All this being said, there is a lot of work remaining. There needs to be some element of challenge and variety in hitting the pin. I like the idea of giving it some animated wings and floating around. Reminiscent of those sardonic animations at bowling alleys that mock you for missing the pins. 
+This final iteration I was able to spend time making the game more interesting/challenging. I wanted to make the pin float around to make it harder to hit. I think I captured the style of bowling alley animation pretty well with the little wings. I am finally rid of the physics bug where the ball snaps back to its previous location. You really need to coax the engine to programatically move Rigid Bodies. These difficulties combined with examples of people warning against it on forums lead me to believe it isn't a very good practice. After I started instancing each ball I don't have to move them programatically anymore. 
 
 - [x] D-1: The repository link is submitted to Canvas before the project deadline.
 - [x] D-2: The repository contains a <code>README.md</code> file in its top-level directory.
@@ -14,15 +14,15 @@ This iteration I was able to spend some time refining some of the game's functio
 - [x] C-3: You have a clear legal right to use all incorporated assets, and the licenses for all third-party assets are tracked in the <code>README.md</code> file.
 - [x] C-4: The <code>README.md</code> contains instructions for how to play the game or such instructions are incorporated into the game itself.
 - [x] C-5: The project content is eligible for an <a href="https://www.esrb.org/ratings-guide/">ESRB Rating</a> of T or less.
-- [x] C-6: The projectile and targets are shown with 2D graphics.
-- [x] C-7: The game plays an appropriate sound effect when the projectile is fired.
+- [x] C-6: The game starts on a title screen. Interacting with the title screen moves the player into the gameplay screen.
 - [x] B-1: The <code>README.md</code> file contains a personal reflection on the iteration and self-evaluation, as defined above.
 - [x] B-2: The playable game is published to GitHub Pages and linked from the <code>README.md</code> file.
 - [x] B-3: Earn one star.
 - [x] A-1: Earn three stars.
-- [x] ⭐ The player has a small inventory of projectiles, and only one can be launched at a time.
-- [x] ⭐ The background and ground use 2D graphics.
-- [x] ⭐ A <abbr title="Heads-Up Display">HUD</abbr> shows the current game state such as the score and number of projectiles remaining.
+- [x] ⭐ When the game is over, the player can interact to take the game back to the title screen, from which the game can be played again.
+- [x] ⭐ Use an <code>AnimationPlayer</code> or <code>Tween</code> to add some pop to the user-interface.
+- [x] ⭐ The source code complies with our adopted style guide.
+
 
 ## 3rd Party Assets
 All artwork and music was made by me unless noted below
