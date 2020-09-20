@@ -198,6 +198,7 @@ __meta__ = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -16.155
+autoplay = true
 script = ExtResource( 11 )
 [connection signal="body_entered" from="PinPath/PathFollow2D/Pin" to="." method="_on_Pin_body_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
