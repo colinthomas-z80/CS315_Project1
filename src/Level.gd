@@ -7,18 +7,20 @@ var ballCount
 var Ball = preload("ball.tscn")
 var curBall
 var Pin = preload("Pin.tscn")
+var deadPinArray = []
 
 func _process(delta):
 	$PinPath/PathFollow2D.offset += 2
 	$HUD.ballCountSetText(ballCount)
 	if Input.is_action_just_pressed("r"):
-		curBall.queue_free()
-		inGame = false
+		if curBall: curBall.queue_free()
 		if ballCount == 1:
 			ballCount = 0 
 			$HUD.newGame()
-		else: 
+			removePins()
+		elif inGame: 
 			ballCount -= 1
+			inGame = false
 			newBall()
 	if Input.is_action_just_pressed("ui_up"):
 		if inGame: $HUD.strengthSetText(curBall.strength("up"))
@@ -65,7 +67,14 @@ func spawnDeadPin():
 	pin.mode = RigidBody2D.MODE_RIGID
 	pin.stopAnimation()
 	add_child(pin)
-	
+	deadPinArray.append(pin)
+
+func removePins():
+	if deadPinArray.size():
+		for pin in deadPinArray:
+			pin.queue_free()
+		deadPinArray.clear()
+		
 func hideKinematicPin():	
 	$PinPath/PathFollow2D/Pin.hide()
 
