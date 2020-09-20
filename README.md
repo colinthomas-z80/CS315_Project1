@@ -4,7 +4,7 @@ https://bsu-cs315.github.io/P1_pins_of_fury/
 
 
 ## Project Report
-This final iteration I was able to spend time making the game more interesting/challenging. I wanted to make the pin float around to make it harder to hit. I think I captured the style of bowling alley animation pretty well with the little wings. I am finally rid of the physics bug where the ball snaps back to its previous location. You really need to coax the engine to programatically move Rigid Bodies. These difficulties combined with examples of people warning against it on forums lead me to believe it isn't a very good practice. After I started instancing each ball I don't have to move them programatically anymore. 
+This final iteration I was able to spend time making the game more interesting/challenging. I wanted to make the pin float around so it is harder to hit. I think I captured the style of bowling alley animation pretty well with the little wings. One triumph of mine is that I am finally rid of the physics bug where the ball snapped back to its previous location. You really need to coax the engine to programatically move Rigid Bodies. The difficulties I had combined with examples of people warning against it on forums lead me to believe it isn't a very good practice. After I started instancing each ball I didn't have to move them programatically anymore.
 
 - [x] D-1: The repository link is submitted to Canvas before the project deadline.
 - [x] D-2: The repository contains a <code>README.md</code> file in its top-level directory.
